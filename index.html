@@ -1,18 +1,86 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Explorando Blumenau</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explorando Blumenau</title>
 <style>
-body {
-  background-color: #9fd4a3;
+* {
   margin: 0;
-  padding: 20px;
-  font-family: sans-serif;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.titulo {
+body {
+  background-color: #9fd4a3;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+/* TODAS AS TELAS COMEÇAM ESCONDIDAS */
+.tela {
+  display: none;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* SÓ A TELA ATIVA APARECE */
+.tela.ativa {
+  display: block;
+}
+
+/* CAPA */
+#capa {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#capa.ativa {
+  display: flex;
+}
+
+.titulo-jogo {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px 50px;
+  font-size: 42px;
+  font-weight: bold;
+  color: #2d5a3d;
+  margin-bottom: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.info-capa {
+  color: #2d5a3d;
+  font-size: 16px;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.btn-capa {
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 15px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-capa:hover {
+  background-color: #5ce6b0;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* TÍTULOS DAS PÁGINAS */
+.titulo-pagina {
   background-color: white;
   border-radius: 15px;
   padding: 10px 20px;
@@ -23,6 +91,32 @@ body {
   max-width: 600px;
 }
 
+/* MENU PRINCIPAL */
+.menu-opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+/* BOTÃO VOLTAR */
+.btn-voltar {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background-color: #5ce6b0;
+}
+
+/* PONTOS TURÍSTICOS */
 .container-fotos { 
   display: flex; 
   flex-wrap: wrap; 
@@ -72,8 +166,9 @@ body {
   transform: translateY(-6px);
 }
 
-.card-turistico:hover .turistico {
+.card-turistico:hover.turistico {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .turistico img {
@@ -81,115 +176,252 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+/* TEXTOS DE HISTÓRIA E CRÉDITOS */
+.caixa-conteudo {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  line-height: 1.6;
+  color: #333;
+}
+
+.caixa-conteudo h2 {
+  margin-top: 0;
+  color: #2d5a3d;
+  border-bottom: 3px solid #5ce6b0;
+  padding-bottom: 10px;
+}
+
+.caixa-conteudo p {
+  text-align: justify;
+  margin-bottom: 15px;
+}
 </style>
 </head>
 <body>
 
-<h1 class="titulo">LUGARES PARA PASSEAR EM BLUMENAU</h1>
-
-<div class="container-fotos">
-  
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">Parque Ramiro Ruediger</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxyoT1YNqD3DDr_68aYH4JsdkvDoQ8XOWfJzegIQLJBw&s=10" alt="Parque Ramiro Ruediger">
-    </div>
-  </div>
-
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">Catedral</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://www.turismoblumenau.com.br/wp-content/uploads/2021/11/Igreja-Martins-Marcelo-Martins-1-1.jpeg" alt="Catedral São Paulo Apóstolo">
-    </div>
-  </div>
-
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">Parque Vila Germânica</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV-vs6nFrMW3Jac6XJ3DuCVY9h1igNPWs6B2WcpRIN4Q&s=10" alt="Parque Vila Germânica">
-    </div>
-  </div>
-
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">Shopping Neumarkt</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmb5Rp3nnBG3U8ZUt-gBbLNZhMMSstLU4N1OPjqTGIyg&s=10" alt="Shopping Neumarkt">
-    </div>
-  </div>
-
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">Museu da Cerveja</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbKpqezqGn1CaxAFj2VtkmBIzN0rXXw4QjirMu2XZgcw&s=10" alt="Museu da Cerveja">
-    </div>
-  </div>
-
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">Museu Hering</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWj3qU-dDnMGLuTHUx2qKOqIG_yTSDlWu1zb7oUioNcQ&s=10" alt="Museu Hering">
-    </div>
-  </div>
-
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">Teatro Carlos Gomes</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvhBi-BPMeKc5E3DYKMounQ0qQ-QE3oEIgYCH91qN5Lw&s=10" alt="Teatro Carlos Gomes">
-    </div>
-  </div>
-
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">P. Ecológico Spitzkopf</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIF5aLg4yODXYu9ik8hoDjmO6KwHAqnT4OBobwcN0_ig&s=10" alt="P. Ecológico Spitzkopf">
-    </div>
-  </div>
-
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">Cemitério dos Gatos</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3xieaFpBAm5AwarsWNI2vuoWyF3SD_k-6mwRXsuFqtw&s=10" alt="Cemitério dos Gatos">
-    </div>
-  </div>
-
-  <div class="card-turistico">
-    <div class="caixa-texto">
-      <p class="nome-local">Em breve  🔒</p>
-      <div class="estrelas">★★★★★</div>
-    </div>
-    <div class="turistico">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9azbIt0BwedGW_5D_9l2ANnOZecpmTYKWoBApAWdKow&s=10" alt="Em breve">
-    </div>
-  </div>
-
+<!-- TELA 1: CAPA - ESSA COMEÇA VISÍVEL -->
+<div id="capa" class="tela ativa">
+  <h1 class="titulo-jogo">Explorando Blumenau</h1>
+  <p class="info-capa">@gustavo.bomassaro - Versão 0.1 - 2026</p>
+  <button class="btn-capa" onclick="trocarTela('menu')">ENTRAR</button>
+  <button class="btn-capa" onclick="trocarTela('creditos')">CRÉDITOS</button>
 </div>
+
+<!-- TELA 2: MENU -->
+<div id="menu" class="tela">
+  <h1 class="titulo-pagina">MENU PRINCIPAL</h1>
+  <div class="menu-opcoes">
+    <button class="btn-capa" onclick="trocarTela('pontos')">🗺️ Ver Pontos Turísticos</button>
+    <button class="btn-capa" onclick="trocarTela('historiaBlumenau')">🏛️ História de Blumenau</button>
+    <button class="btn-capa" onclick="trocarTela('historiaOktober')">🍺 História da Oktoberfest</button>
+    <button class="btn-capa" onclick="trocarTela('capa')">← Voltar pra Capa</button>
+  </div>
+</div>
+
+<!-- TELA 3: PONTOS TURÍSTICOS -->
+<div id="pontos" class="tela">
+  <button class="btn-voltar" onclick="trocarTela('menu')">← Voltar</button>
+  <h1 class="titulo-pagina">LUGARES PARA PASSEAR EM BLUMENAU</h1>
+  
+  <div class="container-fotos">
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">Parque Ramiro Ruediger</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Parque+Ramiro+Ruediger+Blumenau" target="_blank">
+        <div class="turistico"><img data-id="ramiro" alt="Parque Ramiro Ruediger"></div>
+      </a>
+    </div>
+
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">Catedral</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Catedral+Sao+Paulo+Apostolo+Blumenau" target="_blank">
+        <div class="turistico"><img data-id="catedral" alt="Catedral São Paulo Apóstolo"></div>
+      </a>
+    </div>
+
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">Parque Vila Germânica</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Parque+Vila+Germanica+Blumenau" target="_blank">
+        <div class="turistico"><img data-id="vila" alt="Parque Vila Germânica"></div>
+      </a>
+    </div>
+
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">Shopping Neumarkt</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Shopping+Neumarkt+Blumenau" target="_blank">
+        <div class="turistico"><img data-id="shopping" alt="Shopping Neumarkt"></div>
+      </a>
+    </div>
+
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">Museu da Cerveja</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Museu+da+Cerveja+Blumenau" target="_blank">
+        <div class="turistico"><img data-id="cerveja" alt="Museu da Cerveja"></div>
+      </a>
+    </div>
+
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">Museu Hering</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Museu+Hering+Blumenau" target="_blank">
+        <div class="turistico"><img data-id="hering" alt="Museu Hering"></div>
+      </a>
+    </div>
+
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">Teatro Carlos Gomes</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Teatro+Carlos+Gomes+Blumenau" target="_blank">
+        <div class="turistico"><img data-id="teatro" alt="Teatro Carlos Gomes"></div>
+      </a>
+    </div>
+
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">P. Ecológico Spitzkopf</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Parque+Ecologico+Spitzkopf+Blumenau" target="_blank">
+        <div class="turistico"><img data-id="spitzkopf" alt="P. Ecológico Spitzkopf"></div>
+      </a>
+    </div>
+
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">Cemitério dos Gatos</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Cemiterio+dos+Gatos+Blumenau" target="_blank">
+        <div class="turistico"><img data-id="cemiterio" alt="Cemitério dos Gatos"></div>
+      </a>
+    </div>
+
+    <div class="card-turistico">
+      <div class="caixa-texto">
+        <p class="nome-local">Em breve 🔒</p>
+        <div class="estrelas">★★★★★</div>
+      </div>
+      <a href="#" onclick="alert('Em breve!'); return false;">
+        <div class="turistico"><img data-id="breve" alt="Em breve"></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- TELA 4: HISTÓRIA BLUMENAU -->
+<div id="historiaBlumenau" class="tela">
+  <button class="btn-voltar" onclick="trocarTela('menu')">← Voltar</button>
+  <div class="caixa-conteudo">
+    <h2>História de Blumenau</h2>
+    <p>
+      Blumenau foi fundada em 2 de setembro de 1850 pelo filósofo alemão Dr. Hermann Bruno Otto Blumenau. 
+      Junto com 17 colonos, ele subiu o Rio Itajaí-Açu em busca de terras férteis para criar uma colônia agrícola que fugia das guerras e da fome na Europa.
+    </p>
+    <p>
+      A cidade enfrentou muitas dificuldades no início: ataques de animais, doenças tropicais e a saudade da terra natal. 
+      Mas a força do trabalho alemão fez a colônia prosperar. A arquitetura enxaimel, a culinária com marreco e chucrute, 
+      e as festas típicas mantêm a cultura viva até hoje.
+    </p>
+    <p>
+      Blumenau é conhecida como a "Capital Brasileira da Cerveja" e também como "Pequena Alemanha". 
+      As enchentes de 1983 e 1984 marcaram a história, mas também deram origem à Oktoberfest, que levantou o ânimo da cidade.
+    </p>
+  </div>
+</div>
+
+<!-- TELA 5: HISTÓRIA OKTOBER -->
+<div id="historiaOktober" class="tela">
+  <button class="btn-voltar" onclick="trocarTela('menu')">← Voltar</button>
+  <div class="caixa-conteudo">
+    <h2>História da Oktoberfest</h2>
+    <p>
+      A Oktoberfest de Blumenau nasceu em 1984, como resposta às devastadoras enchentes de 1983 e 1984 que destruíram a cidade. 
+      O então prefeito Dalto dos Reis e o secretário de turismo Antônio Pedro Nunes tiveram a ideia de criar uma festa 
+      para arrecadar fundos e devolver a alegria ao povo blumenauense.
+    </p>
+    <p>
+      Inspirada na festa original de Munique, na Alemanha, a versão de Blumenau logo se tornou a segunda maior festa da cerveja 
+      do mundo e a maior das Américas. São 18 dias de festa em outubro, com desfiles na Rua XV, concursos de chope em metro, 
+      bandas típicas alemãs e os famosos personagens Fritz e Frida.
+    </p>
+    <p>
+      A festa atrai mais de 700 mil visitantes por ano e movimenta milhões na economia local. 
+      É a prova de que Blumenau transforma tragédia em tradição.
+    </p>
+  </div>
+</div>
+
+<!-- TELA 6: CRÉDITOS -->
+<div id="creditos" class="tela">
+  <button class="btn-voltar" onclick="trocarTela('capa')">← Voltar pra Capa</button>
+  <div class="caixa-conteudo">
+    <h2>Créditos</h2>
+    <p><strong>Desenvolvimento e Design:</strong> @gustavo.bomassaro</p>
+    <p><strong>Versão:</strong> 0.1 - 2026</p>
+    <p><strong>Cidade:</strong> Blumenau, Santa Catarina - Brasil</p>
+    <p><strong>Inspiração:</strong>Ideia do zero</p>
+    <p><strong>Agradecimentos:</strong> A todos que apoiram e Meta ia</p>
+  </div>
+</div>
+
+<script>
+// COLOCA TODOS OS SEUS LINKS DE IMAGEM AQUI - SÓ NESSE LUGAR
+const IMAGENS = {
+  ramiro: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxyoT1YNqD3DDr_68aYH4JsdkvDoQ8XOWfJzegIQLJBw&s=10",
+  catedral: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyPFcSV9P1_7HMhbv9Dar9kvgZOZZlveDsTcYkGMB2JA&s=10",
+  vila: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxyoT1YNqD3DDr_68aYH4JsdkvDoQ8XOWfJzegIQLJBw&s=10",
+  shopping: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzz8XUp463WNpDR61dP6kGvTrK6n7sxHt_PKZMD9D1Jg&s=10", 
+  cerveja: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbKpqezqGn1CaxAFj2VtkmBIzN0rXXw4QjirMu2XZgcw&s=10",
+  hering: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWj3qU-dDnMGLuTHUx2qKOqIG_yTSDlWu1zb7oUioNcQ&s=10",
+  teatro: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvhBi-BPMeKc5E3DYKMounQ0qQ-QE3oEIgYCH91qN5Lw&s=10",
+  spitzkopf: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIF5aLg4yODXYu9ik8hoDjmO6KwHAqnT4OBobwcN0_ig&s=10",
+  cemiterio: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3xieaFpBAm5AwarsWNI2vuoWyF3SD_k-6mwRXsuFqtw&s=10",
+  breve: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9azbIt0BwedGW_5D_9l2ANnOZecpmTYKWoBApAWdKow&s=10"
+};
+
+// FUNÇÃO QUE TROCA DE TELA - ESSA É A MÁGICA
+function trocarTela(idTela) {
+  // 1. Esconde TODAS as telas
+  document.querySelectorAll('.tela').forEach(tela => {
+    tela.classList.remove('ativa');
+  });
+  // 2. Mostra SÓ a tela que você clicou
+  document.getElementById(idTela).classList.add('ativa');
+  // 3. Sobe pro topo da página
+  window.scrollTo(0, 0);
+}
+
+// CARREGA AS IMAGENS AUTOMATICAMENTE
+document.querySelectorAll('.turistico img').forEach(img => {
+  const id = img.getAttribute('data-id');
+  if (IMAGENS[id] &&!IMAGENS[id].includes('COLE_SEU_LINK')) {
+    img.src = IMAGENS[id];
+  }
+});
+</script>
 
 </body>
 </html>
